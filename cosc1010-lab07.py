@@ -1,12 +1,9 @@
-# Your Name Here
+# Eugenia Ceinos
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
+# Submission Date: 
+# Lab 07
+# Lab Section: 16
 # Sources, people worked with, help given to: 
-# your
-# comments
-# here
 
 
 # Prompt the user for an upper bound 
@@ -17,7 +14,22 @@
     # If a user did not enter a number output a statement saying so
 # You will continue to prompt the user until a proper integer value is entered
 
+upper_bound = input("Write an upper bound: ")
+
+num = 0
+
 factorial = 1
+
+if upper_bound.isdigit():
+    upper_bound = int(upper_bound)
+else:
+    print("Only positive numbers please")
+    exit()
+
+while num != upper_bound:
+    num += 1
+    factorial = num * factorial
+
 
 print(f"The result of the factorial based on the given bound is {factorial}")
 
@@ -39,6 +51,16 @@ print("*"*75)
 
 num_sum = 0 
 
+while True:
+    number = input("Integer values to sum them up, 'exit' to stop: ")
+    if number.isdigit():
+        num_sum += int(number)
+    elif number == "exit":
+        break
+    else:
+        print("Please only numbers or 'exit' to have your result final result")
+        break
+
 print(f"Your final sum is {num_sum}")
 
 print("*"*75)
@@ -59,4 +81,54 @@ print("*"*75)
 # Print the result of the equation
 # Again, loop through prompting the user for input until `exit` in any casing is input 
 
-        
+first = 1
+second = 0
+operator = 0
+extra = 0
+index = 0
+
+calculate = input("Introduce opreand operator operand: ")
+# Find the first number
+for char in calculate:
+    if char.isdigit():
+        first += 1
+        index += 1
+    else:
+        break
+first = calculate[:first]
+
+# Find the operator
+for i in range(index, len(calculate)):
+    if calculate[index] == " ":
+        index += 1
+        extra += 1
+    if calculate[index] == "+" or calculate[index] == "-" or calculate[index] == "/" or calculate[index] == "*" or calculate[index] == "%":
+        operator = calculate[index]
+        index += 1
+
+# Find the second number
+for n in range(index, len(calculate)):
+    if calculate[n].isdigit():
+        second += 1
+        index += 1
+    else:
+        break
+second = calculate[-second:]
+
+first = int(first)
+second = int(second)
+
+total = 0
+
+if operator == "+":
+    total = first + second
+elif operator == "-":
+    total = first - second
+elif operator == "/":
+    total = first / second
+elif operator == "*":
+    total = first * second
+else:
+    total = first % second
+
+print(f"Your result is {total}")
