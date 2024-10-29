@@ -3,7 +3,7 @@
 # Submission Date: 
 # Lab 07
 # Lab Section: 16
-# Sources, people worked with, help given to: 
+# Sources, people worked with, help given to: none
 
 
 # Prompt the user for an upper bound 
@@ -58,7 +58,6 @@ while True:
     elif number == "exit":
         break
     else:
-        print("Please only numbers or 'exit' to have your result final result")
         break
 
 print(f"Your final sum is {num_sum}")
@@ -81,19 +80,22 @@ print("*"*75)
 # Print the result of the equation
 # Again, loop through prompting the user for input until `exit` in any casing is input 
 
-first = 1
+first = 0
 second = 0
 operator = 0
-extra = 0
 index = 0
 
 calculate = input("Introduce opreand operator operand: ")
+
+calculate = calculate.replace(" ", "")
+
 # Find the first number
-for char in calculate:
-    if char.isdigit():
+for char in range(index, len(calculate)):
+    if calculate[char].isdigit():
         first += 1
         index += 1
     else:
+        ("Only operand operator operand")
         break
 first = calculate[:first]
 
@@ -101,10 +103,13 @@ first = calculate[:first]
 for i in range(index, len(calculate)):
     if calculate[index] == " ":
         index += 1
-        extra += 1
+    else:
+        pass
     if calculate[index] == "+" or calculate[index] == "-" or calculate[index] == "/" or calculate[index] == "*" or calculate[index] == "%":
         operator = calculate[index]
         index += 1
+    else:
+        pass
 
 # Find the second number
 for n in range(index, len(calculate)):
