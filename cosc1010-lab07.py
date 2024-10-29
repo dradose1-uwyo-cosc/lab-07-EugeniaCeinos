@@ -55,12 +55,12 @@ while True:
     number = input("Integer values to sum them up, 'exit' to stop: ")
     if number.isdigit():
         num_sum += int(number)
-    elif number == "exit":
+    elif number.lower() == "exit":
+        print(f"Your final sum is {num_sum}")
         break
     else:
+        print("Only numbers or 'exit' to end the sum and get your result")
         break
-
-print(f"Your final sum is {num_sum}")
 
 print("*"*75)
 # Now you will be creating a two operand calculator
