@@ -4,7 +4,7 @@
 # Lab 07
 # Lab Section: 16
 # Sources, people worked with, help given to: none
-
+# I didn't know if I was allowed to use another while or a for loop in the first part
 
 # Prompt the user for an upper bound 
 # Write a while loop that gives the factorial of that upper bound
@@ -14,26 +14,37 @@
     # If a user did not enter a number output a statement saying so
 # You will continue to prompt the user until a proper integer value is entered
 
-upper_bound = input("Write an upper bound: ")
-
-num = 0
-
 factorial = 1
+max = 0
+num = 0
+upper_bound = ""
+t = 0
 
-if upper_bound.isdigit():
-    upper_bound = int(upper_bound)
-else:
-    print("Only positive numbers please")
-    exit()
+while t != 1:
+    if upper_bound == "":
+        upper_bound = input("Write an upper bound: ")
+    else:
+        pass
 
-while num != upper_bound:
-    num += 1
-    factorial = num * factorial
+    if upper_bound.isdigit():
+        max = int(upper_bound)
+        pass
+    else:
+        upper_bound = ""
+        print("Only positive numbers please")
 
+    if num != max and upper_bound.isdigit():
+        num += 1
+        factorial = num * factorial
+    else:
+        pass
 
-print(f"The result of the factorial based on the given bound is {factorial}")
+    if num == max and upper_bound.isdigit():
+        print(f"The result of the factorial based on the given bound is {factorial}")
+        t = 1
 
 print("*"*75)
+
 # Create a while loop that prompts a user for input of an integer values
 # Sum all inputs. When the user enters 'exit' (regardless of casing) end the loop
 # Upon ending the loop print the sum
@@ -50,19 +61,25 @@ print("*"*75)
 # The sum should start at 0 
 
 num_sum = 0 
+substraction = 0
 
 while True:
     number = input("Integer values to sum them up, 'exit' to stop: ")
-    if number.isdigit():
+    if number[0] == "-":
+        number = number[1:]
+        if number.isdigit():
+            substraction += int(number)
+    elif number.isdigit():
         num_sum += int(number)
     elif number.lower() == "exit":
+        num_sum = num_sum - substraction
         print(f"Your final sum is {num_sum}")
         break
     else:
         print("Only numbers or 'exit' to end the sum and get your result")
-        break
 
 print("*"*75)
+
 # Now you will be creating a two operand calculator
 # It will support the following operators: +,-,/,*,% 
 # So accepted input is of the form `operand operator operand` 
@@ -80,60 +97,63 @@ print("*"*75)
 # Print the result of the equation
 # Again, loop through prompting the user for input until `exit` in any casing is input 
 
-first = 0
-second = 0
-operator = 0
-index = 0
 
-calculate = input("Introduce opreand operator operand: ")
 
-calculate = calculate.replace(" ", "")
-
-# Find the first number
-for char in range(index, len(calculate)):
-    if calculate[char].isdigit():
-        first += 1
-        index += 1
-    else:
-        ("Only operand operator operand")
+while True:
+    first = 0
+    second = 0
+    operator = 0
+    t = False
+    total = 0
+    calculate = input("Operand operator operand or 'exit' to leave: ")
+    calculate = calculate.replace(" ", "")
+    if calculate.lower() == "exit":
         break
-first = calculate[:first]
 
-# Find the operator
-for i in range(index, len(calculate)):
-    if calculate[index] == " ":
-        index += 1
+
+    for i in range(len(calculate)):
+        if calculate[i] == "-":
+            operator = calculate[i]
+            first = calculate[:i]
+            n = i + 1
+            second = calculate [n:]
+        elif calculate[i] == "+":
+            operator = calculate[i]
+            first = calculate[:i]
+            n = i + 1
+            second = calculate [n:]
+        elif calculate[i] == "/":
+            operator = calculate[i]
+            first = calculate[:i]
+            n = i + 1
+            second = calculate [n:]
+        elif calculate[i] == "*":
+            operator = calculate[i]
+            first = calculate[:i]
+            n = i + 1
+            second = calculate [n:]
+        elif calculate[i] == "%":
+            operator = calculate[i]
+            first = calculate[:i]
+            n = i + 1
+            second = calculate [n:]
+        
+    if first.isdigit() and second.isdigit():
+        first = int(first)
+        second = int(second)
+        t = True
     else:
-        pass
-    if calculate[index] == "+" or calculate[index] == "-" or calculate[index] == "/" or calculate[index] == "*" or calculate[index] == "%":
-        operator = calculate[index]
-        index += 1
-    else:
-        pass
+        print("Only operand operator operand or 'exit' please")
 
-# Find the second number
-for n in range(index, len(calculate)):
-    if calculate[n].isdigit():
-        second += 1
-        index += 1
-    else:
-        break
-second = calculate[-second:]
-
-first = int(first)
-second = int(second)
-
-total = 0
-
-if operator == "+":
-    total = first + second
-elif operator == "-":
-    total = first - second
-elif operator == "/":
-    total = first / second
-elif operator == "*":
-    total = first * second
-else:
-    total = first % second
-
-print(f"Your result is {total}")
+    if t:
+        if operator == "+":
+            total = first + second
+        elif operator == "-":
+            total = first - second
+        elif operator == "/":
+            total = first / second
+        elif operator == "*":
+            total = first * second
+        elif operator == "%":
+            total = first % second
+        print("Your total is:",total)
